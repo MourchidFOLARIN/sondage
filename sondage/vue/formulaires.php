@@ -3,8 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Collecte De Données - RetireAfrika</title>
-    
+    <title>Collecte De Données</title>
+    <link rel="stylesheet" href="../css/sortie.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        .feuille{
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.18);
+        }
+    </style>
 </head>
 <body>
 
@@ -20,35 +26,224 @@ var_dump($_SESSION);
 ?>
 
 </div>
+
+
+
+<!-- La classe span je veux l'itiliser dans le js pour que quand un radio est sélectionné qu'il reste en bordure -->
+    <form action="model.php" method="POST" class="h-9/10 flex flex-col justify-center items-center p-4">
+
+        <div class="container feuille rounded-xs px-1 py-1 flex flex-col gap-2 items-center justify-center">
+            <!--  Le formulaire 1 -->
+
+            <h2 class="font-medium my-3 text-2xl flex gap-1 mr-auto pl-1"><i class="ri-user-3-fill"></i> <span>Profil du Répondant</span></h2>
+            
+            <!-- Age -->
+            <label class="font-medium text-xl mr-auto pl-1">Tranche d'Age</label>
+            <div class="w-full flex flex-wrap gap-2 px-1 justify-center items-center">
+                <span class="span w-[52%] text-lg p-1 rounded-lg border-blue-500/90 hidden:border-2 active:border-l-5 hover:border-l-5 hover:translate-x-1 duration-300 flex items-center gap-1">
+                    <input type="radio" name="age" value="Moins de 25 ans" <?= (isset($_POST['age']) && $_POST['age'] == "M25") ? "checked" : ""?>  class="age appearance-none w-[9%] h-4 border-2 border-slate-400 rounded-sm checked:bg-blue-500/90 checked:border-none transition-all cursor-pointer"><label>Moins de 25ans</label>
+                </span>
+                <span  class="span w-[45%] text-lg p-1 rounded-lg border-blue-500/90 hidden:border-2 active:border-l-5 hover:border-l-5 hover:translate-x-1 duration-300 flex items-center gap-1">
+                    <input type="radio" name="age" value="25-34 ans" <?= (isset($_POST['age']) && $_POST['age'] == "25-34") ? "checked" : "" ?> class="age appearance-none w-[11%] h-4 border-2 border-slate-400 rounded-sm checked:bg-blue-500/90 checked:border-none transition-all cursir-pointer"><label>25-34ans</label>
+                </span>
+                <span  class="span w-[52%] text-lg p-1 rounded-lg border-blue-500/90 hidden:border-2 active:border-l-5 hover:border-l-5 hover:translate-x-1 duration-300 flex items-center gap-1">
+                    <input type="radio" name="age" value="35-44 ans" <?= (isset($_POST['age']) && $_POST['age'] == "35-44") ? "checked" : "" ?> class="age appearance-none w-[9%] h-4 border-2 border-slate-400 rounded-sm checked:bg-blue-500/90 checked:border-none transition-all cursir-pointer"><label>35-44ans</label>
+                </span>
+                <span class="span w-[45%] text-lg p-1 rounded-lg border-blue-500/90 hidden:border-2 active:border-l-5 hover:border-l-5 hover:translate-x-1 duration-300 flex items-center gap-1">  
+                    <input type="radio" name="age" value="45-54 ans" <?= (isset($_POST['age']) && $_POST['age'] == "45-54") ? "checked" : "" ?> class="age appearance-none w-[11%] h-4 border-2 border-slate-400 rounded-sm checked:bg-blue-500/90 checked:border-none transition-all cursir-pointer"><label>45-54ans</label>
+                </span>
+                <span  class="span w-[52%] text-lg p-1 rounded-lg border-blue-500/90 hidden:border-2 active:border-l-5 hover:border-l-5 hover:translate-x-1 duration-300 flex items-center gap-1">
+                    <input type="radio" name="age" value="55 ans et plus" <?= (isset($_POST['age']) && $_POST['age'] == "55+") ? "checked" : "" ?> class="age appearance-none w-[9%] h-4 border-2 border-slate-400 rounded-sm checked:bg-blue-500/90 checked:border-none transition-all cursir-pointer"><label>55ans ou plus</label>
+                </span>
+            </div>
+            
+            <!-- Sexe -->
+            <label class="font-medium text-xl mr-auto pl-1">Sexe</label>
+            <div class="w-full flex flex-wrap gap-1 px-1 justify-center items-center">
+                <span class="span w-[31%] text-sm p-1 rounded-lg border-blue-500/90 hidden:border-2 active:border-l-5 hover:border-l-5 hover:translate-x-1 duration-300 flex items-center gap-1">
+                    <input type="radio" name="sexe" value="Homme" <?= (isset($_POST['sexe']) && $_POST['sexe'] == "H") ? "checked" : "" ?> class="sexe appearance-none w-[15%] h-4 border-2 rounded-sm border-slate-400 checked:border-none checked:bg-blue-500/90"><label>Féminin</label>
+                </span>
+                <span class="span w-[31%] text-sm p-1 rounded-lg border-blue-500/90 hidden:border-2 active:border-l-5 hover:border-l-5 hover:translate-x-1 duration-300 flex items-center gap-1">
+                    <input type="radio" name="sexe" value="Femme" <?= (isset($_POST['sexe']) && $_POST['sexe'] == "F") ? "checked" : "" ?> class="sexe appearance-none w-[15%] h-4 border-2 rounded-sm border-slate-400 checked:border-none checked:bg-blue-500/90"><label>Masculin</label>
+                </span>
+                <span class="span w-[31%] text-sm p-1 rounded-lg border-blue-500/90 hidden:border-2 active:border-l-5 hover:border-l-5 hover:translate-x-1 duration-300 flex items-center gap-1">                
+                    <input type="radio" name="sexe" value="Préfère ne pas répondre" <?= (isset($_POST['sexe']) && $_POST['sexe'] == "P") ? "checked" : "" ?> class="sexe appearance-none w-[15%] h-4 border-2 rounded-sm border-slate-400 checked:border-none checked:bg-blue-500/90"><label>Personnel</label>
+                </span>
+            </div>
+            
+            <!-- Le secteur -->
+            <label class="font-medium text-xl mr-auto pl-1">Secteur d'activité</label>
+            <div class="w-full flex flex-wrap gap-3 px-1 justify-center items-center">
+                <span class="span w-[47%] text-sm p-1 rounded-lg border-blue-500/90 hidden:border-2 active:border-l-5 hover:border-l-5 hover:translate-x-1 duration-300 flex items-center gap-1">
+                    <input type="radio" name="secteurActivite" class="secteurActivite appearance-none w-[10%] h-4 border-2 rounded-sm border-slate-400 checked:border-none checked:bg-blue-500/90" value="Informel" <?= (isset($_POST['secteurActivite']) && $_POST['secteurActivite'] == "Informel") ? "checked" : "" ?>><label>Informel</label>
+                </span>
+                <span class="span w-[47%] text-sm p-1 rounded-lg border-blue-500/90 hidden:border-2 active:border-l-5 hover:border-l-5 hover:translate-x-1 duration-300 flex items-center gap-1">
+                    <input type="radio" name="secteurActivite" class="secteurActivite appearance-none w-[10%] h-4 border-2 rounded-sm border-slate-400 checked:border-none checked:bg-blue-500/90" value="Formel" <?= (isset($_POST['secteurActivite']) && $_POST['secteurActivite'] == "Formel") ? "checked" : "" ?>><label>Formel</label>
+                </span>
+                <span class="span w-[47%] text-sm p-1 rounded-lg border-blue-500/90 hidden:border-2 active:border-l-5 hover:border-l-5 hover:translate-x-1 duration-300 flex items-center gap-1">
+                    <input type="radio" name="secteurActivite" class="secteurActivite appearance-none w-[10%] h-4 border-2 rounded-sm border-slate-400 checked:border-none checked:bg-blue-500/90" value="Etudiant" <?= (isset($_POST['secteurActivite']) && $_POST['secteurActivite'] == "Etudiant") ? "checked" : "" ?>><label>Etudiant</label>
+                </span>
+                <span class="span w-[47%] text-sm p-1 rounded-lg border-blue-500/90 hidden:border-2 active:border-l-5 hover:border-l-5 hover:translate-x-1 duration-300 flex items-center gap-1">
+                    <input type="radio" name="secteurActivite" class="secteurActivite appearance-none w-[10%] h-4 border-2 rounded-sm border-slate-400 checked:border-none checked:bg-blue-500/90" value="Autre" <?= (isset($_POST['secteurActivite']) && $_POST['secteurActivite'] == "Autre") ? "checked" : "" ?>><label>Autre</label>
+                </span>
+            </div>
+
+            <!-- Pays/ville -->
+            <label class="font-medium text-xl mr-auto pl-1">Pays et Ville</label>
+            <span class="w-full min-h-[40px] flex items-center gap-1 text-xl border hover:-translate-y-0.5 duration-300 border-slate-400 rounded-sm p-1">
+                <input type="text" name="PayVil" id="PayVil" value="<?= htmlspecialchars($_POST['PayVil'] ?? '') ?>" placeholder="Ex: Pays/Ville" class="outline-0">
+            </span>
+
+            <div class="flex justify-between" px-1>
+                
+                <button class="rounded-sm px-4 py-2 bg-blue-50 text-black  text-xl">Continuez</button>
+            </div>
+
+        </div>
+        <!--  Le formulaire 2-->
+
+        <div class="hidden container feuille">
+            <h2>Revenus et epagne actuelle</h2>
+            <!--regularite des revenus -->
+            <label>Vos revenus sont:</label>
+            <input type="radio" name="regularite" class="regularite" value="Réguliers"><label>Réguliers</label><br>
+            <input type="radio" name="regularite" class="regularite" value="Irréguliers"><label>Irréguliers</label><br>
+            <input type="radio" name="regularite" class="regularite" value="Variables"><label>Très variables selon le mois</label><br>
+            <!--Epargnez-vous actuellement -->
+            <label>Epargnez vous actuellement ?</label>
+            <input type="radio" name="epagne" class="epagne" value="Régulièrement"><label>Oui,régulièrement</label><br>
+            <input type="radio" name="epagne" class="epagne" value="Temps_en_temps"><label>Oui,de temps en temps</label><br>
+            <input type="radio" name="epagne" class="epagne" value="Non"><label>Non</label><br>
+            <!--Moyens d'epagne -->
+            <label>Si oui,comment epagnez vous ?</label>
+            <input type="checkbox" name="moyen_epargne[]" class="moyen_epagne" value="Tontine"><label>Tontine</label>
+            <input type="checkbox" name="moyen_epargne[]" class="moyen_epagne" value="Mobile_Money"><label>Mobile Money</label>
+            <input type="checkbox" name="moyen_epargne[]" class="moyen_epagne" value="Compte_bancaire"><label>Compte bancaire</label>
+            <input type="checkbox" name="moyen_epargne[]" class="moyen_epagne" value="Assurance"><label>Assurance</label>
+            <input type="checkbox" name="moyen_epargne[]" class="moyen_epagne" value="Maison"><label>A la maison</label>
+            <input type="checkbox" name="moyen_epargne[]" class="moyen_epagne" value="Autre"><label>Autre</label>
+            <!-- Moyenne d'epagne par mois-->
+            <label>En moyenne ,combien epagnez vous par mois ?</label>
+            <input type="radio" name="epagneParMois" class="epagneParMois" value="M5k"><label>Moins de 5000 FCFA</label><br>
+            <input type="radio" name="epagneParMois" class="epagneParMois" value="5kInf10k"><label>5000-10000 FCFA</label><br>
+            <input type="radio" name="epagneParMois" class="epagneParMois" value="10kInf25k"><label>10000-25000 FCFA</label><br>
+            <input type="radio" name="epagneParMois" class="epagneParMois" value="P25k"><label>Plus de 25000 FCFA</label><br>
+            <input type="radio" name="epagneParMois" class="epagneParMois" value="Variable"><label>Cela dépend des mois</label><br>
+        </div>
+                <!--  Le formulaire 3 -->
+        <div class="hidden container feuille">
+            <h2> Retraite & avenir financier</h2>
+                        <!--   Avenir financière -->
+            <label> <span>09</span> Avez-vous déjà pensé à votre retraite ou à votre avenir financier ? </label>
+            <input type="radio" name="AvenirFinancier" class="AvenirFinancier" value="Oui, sérieusement"><label>Oui, sérieusement </label><br>
+            <input type="radio" name="AvenirFinancier" class="AvenirFinancier" value="Un peu "><label>Un peu </label><br>
+            <input type="radio" name="AvenirFinancier" class="AvenirFinancier" value="Jamais "><label>Jamais </label><br>
+            <!--   Vivre a la rétraire-->
+            <label> <span>10</span> Comment pensez-vous vivre à la retraite ? </label>
+            <input type="radio" name="vivreRetraire" class="vivreRetrairer" value="Aide des enfants"><label>Aide des enfants </label><br>
+            <input type="radio" name="vivreRetraire" class="vivreRetrairer" value="Épargne personnelle"><label>Épargne personnelle</label><br>
+            <input type="radio" name="vivreRetraire" class="vivreRetrairer" value="Activité même à un âge avancé "><label>Activité même à un âge avancé </label><br>
+            <input type="radio" name="vivreRetraire" class="vivreRetrairer" value="Je ne sais pas "><label>Je ne sais pas </label><br>
+            <!-- Pensée sur l'eparge -->
+            <label> <span>11</span> Pensez-vous que l’épargne seule suffit pour bien préparer l’avenir ? </label>
+            <input type="radio" name="AvenirEpagne" class="AvenirEpagne" value="Oui"><label>Aide des enfants </label><br>
+            <input type="radio" name="AvenirEpagne" class="AvenirEpagne" value="Non"><label>Aide des enfants </label><br>
+            <input type="radio" name="AvenirEpagne" class="AvenirEpagne" value=" Je ne sais pas "><label>Aide des enfants </label><br>                        
+        </div>
+                <!--  Le formulaire 4 -->
+        <div class="container hidden  feuille">
+
+            <h2>Prise de connaissance avec les investissements</h2>
+            <!-- Investissements -->
+            <label>Avez-vous déjà entendu parler d’investissements financiers ? </label>
+            <input type="radio" name="KnownInvest" class="KnownInvest" value="oui"><label>Oui</label><br>
+            <!-- EFT -->
+            <label>Connaissez-vous des ETF ou fonds d’investissement? </label><br>
+            <input type="radio" name="eft" class="etf" value="oui"><label>Oui</label>
+            <input type="radio" name="eft" class="eft" value="non"><label>Non</label>
+            <!-- interrest -->
+            <label>Seriez-vous intéressé(e) par un investissement simple, sécurisé et expliqué pas à pas ? </label><br>
+            <input type="radio" name="interet" class="interet" value="oui"><label>Oui</label><br>
+            <input type="radio" name="interet" class="interet" value="relatif"><label>Peut-être</label><br>
+            <input type="radio" name="interet" class="interet" value="non"><label>Non</label><br>
+            <button>Continuez</button>
+            <h2>Connaissance des investissements</h2>
+            <!--Investissements financiers-->
+            <label>Avez vous deja entendu parler d'investissements financiers</label>
+            <input type="radio" name="invfin" class="invfin" value="Oui"><label>Oui</label><br>
+            <input type="radio" name="invfin" class="invfin" value="Non"><label>Non</label><br>
+            <!--ETF-->
+            <label>Connaissez-vous les ETF(fonds d'investissements)</label>
+            <input type="radio" name="ETF" class="ETF" value="Oui"><label>Oui</label><br>
+            <input type="radio" name="ETF" class="ETF" value="Non"><label>Non</label><br>
+            <!--Investissements simples?-->
+            <label>Seriez vous interressé(e) par un investisement simple ,sécurisé et expliqué pas à pas </label>
+            <input type="radio" name="invsimple" class="invsimple" value="Oui"><label>Oui</label><br>
+            <input type="radio" name="invsimple" class="invsimple" value="Peutetre"><label>Peut etre</label><br>
+            <input type="radio" name="invsimple" class="invsimple" value="Non"><label>Non</label><br>
+            <!--Type d'explication -->
+        </div>
+        <!--  Le formulaire 5 -->
+        <div class="hidden container feuille">
+            <h2>RetireAfrika(validation du concept)</h2>
+            <!--validation du concept-->
+            <label>Seriez vous pret à investir de petites sommes(ex:1000-5000-10000FCFA ou plus) via Moile Money ?</label>
+            <input type="radio" name="invpsomme" class="invpsomme" value="Oui"><label>Oui</label><br>
+            <input type="radio" name="invpsomme" class="invpsomme" value="Non"><label>Non</label><br>
+            <input type="radio" name="invpsomme" class="invpsomme" value="Peutetre"><label>Peut etre</label><br>
+            <!--fréquence-->
+            <label>A quelle fréquence pourriez vous investir ?</label>
+            <input type="radio" name="fréquence" class="fréquence" value="semaine"><label>Chaque semaine</label><br>
+            <input type="radio" name="fréquence" class="fréquence" value="mois"><label>Chaque mois</label><br>
+            <input type="radio" name="fréquence" class="fréquence" value="Surplus"><label>Quand j'ai un surplus</label><br>
+            <input type="radio" name="fréquence" class="fréquence" value="Rarement"><label>Rarement</label><br>
+            <!--Rassurer -->
+            <label>Qu'es ce qui vous rassurerait le plus?</label>
+            <input type="checkbox" name="rassure" class="rassure" value="sécurité"><label>Sécurité de l'argent</label>
+            <input type="checkbox" name="rassure" class="rassure" value="retraitpossible"><label>Possibilité de retirer</label>
+            <input type="checkbox" name="rassure" class="rassure" value="simpleexplication"><label>Explication simples</label>
+            <input type="checkbox" name="rassure" class="rassure" value="gainsuivi"><label>Suivi clair du gain </label>
+            <input type="checkbox" name="rassure" class="rassure" value="appui"><label>Appui d'une banque connue</label>
+            <!--Type d'explication -->
+            <label>Préferiez vous recevoir des explications via :</label>
+            <input type="radio" name="explication" class="explication" value="video"><label>Vidéos simples</label>
+            <input type="radio" name="explication" class="explication" value="audio"><label>Message audio</label>
+            <input type="radio" name="explication" class="explication" value="SMS"><label>SMS</label>
+            <input type="radio" name="explication" class="explication" value="Humain"><label>Conseiller humain</label>
+            <input type="submit" value="Envoyé">
+        </div>
+    </form>
+
+
     <form action="" method="POST">
-        
-  
+
         <div class="section">
             <h2>Section 1: Profil du répondant</h2>
-            <label>1. Age</label>
-            <div class="radio-group">
-                <input type="radio" name="age" value="Moins de 25 ans" <?= (isset($_POST['age']) && $_POST['age'] == "M25") ? "checked" : "" ?>> Moins de 25 ans<br>
-                <input type="radio" name="age" value="25-34 ans" <?= (isset($_POST['age']) && $_POST['age'] == "25-34") ? "checked" : "" ?>> 25-34 ans<br>
-                <input type="radio" name="age" value="35-44 ans" <?= (isset($_POST['age']) && $_POST['age'] == "35-44") ? "checked" : "" ?>> 35-44 ans<br>
-                <input type="radio" name="age" value="45-54 ans" <?= (isset($_POST['age']) && $_POST['age'] == "45-54") ? "checked" : "" ?>> 45-54 ans<br>
-                <input type="radio" name="age" value="55 ans et plus" <?= (isset($_POST['age']) && $_POST['age'] == "55+") ? "checked" : "" ?>> 55 ans et plus
-            </div>
+            <div>
 
-            <label>2. Sexe</label>
-            <div class="radio-group">
-                <input type="radio" name="sexe" value="Homme" <?= (isset($_POST['sexe']) && $_POST['sexe'] == "H") ? "checked" : "" ?>> Homme
-                <input type="radio" name="sexe" value="Femme" <?= (isset($_POST['sexe']) && $_POST['sexe'] == "F") ? "checked" : "" ?>> Femme
-                <input type="radio" name="sexe" value="Préfère ne pas répondre" <?= (isset($_POST['sexe']) && $_POST['sexe'] == "P") ? "checked" : "" ?>> Préfère ne pas répondre
+                <label>1. Age</label>
+                <div class="radio-group">
+                    <input type="radio" name="age" value="Moins de 25 ans" <?= (isset($_POST['age']) && $_POST['age'] == "M25") ? "checked" : "" ?>> Moins de 25 ans<br>
+                    <input type="radio" name="age" value="25-34 ans" <?= (isset($_POST['age']) && $_POST['age'] == "25-34") ? "checked" : "" ?>> 25-34 ans<br>
+                    <input type="radio" name="age" value="35-44 ans" <?= (isset($_POST['age']) && $_POST['age'] == "35-44") ? "checked" : "" ?>> 35-44 ans<br>
+                    <input type="radio" name="age" value="45-54 ans" <?= (isset($_POST['age']) && $_POST['age'] == "45-54") ? "checked" : "" ?>> 45-54 ans<br>
+                    <input type="radio" name="age" value="55 ans et plus" <?= (isset($_POST['age']) && $_POST['age'] == "55+") ? "checked" : "" ?>> 55 ans et plus
+                </div>
+    
+                <label>2. Sexe</label>
+                <div class="radio-group">
+                    <input type="radio" name="sexe" value="Homme" <?= (isset($_POST['sexe']) && $_POST['sexe'] == "H") ? "checked" : "" ?>> Homme
+                    <input type="radio" name="sexe" value="Femme" <?= (isset($_POST['sexe']) && $_POST['sexe'] == "F") ? "checked" : "" ?>> Femme
+                    <input type="radio" name="sexe" value="Préfère ne pas répondre" <?= (isset($_POST['sexe']) && $_POST['sexe'] == "P") ? "checked" : "" ?>> Préfère ne pas répondre
+                </div>
+                <label>3. Secteur d'activité</label>
+                <div class="radio-group">
+                    <input type="radio" name="secteurActivite" value="Informel" <?= (isset($_POST['secteurActivite']) && $_POST['secteurActivite'] == "Informel") ? "checked" : "" ?>> Secteur informel (commerce, artisanat...)<br>
+                    <input type="radio" name="secteurActivite" value="Formel" <?= (isset($_POST['secteurActivite']) && $_POST['secteurActivite'] == "Formel") ? "checked" : "" ?>> Secteur formel (public, privé)<br>
+                    <input type="radio" name="secteurActivite" value="Etudiant" <?= (isset($_POST['secteurActivite']) && $_POST['secteurActivite'] == "Etudiant") ? "checked" : "" ?>> Étudiant<br>
+                    <input type="radio" name="secteurActivite" value="Autre" <?= (isset($_POST['secteurActivite']) && $_POST['secteurActivite'] == "Autre") ? "checked" : "" ?>> Autre
+                </div>
             </div>
-
-            <label>3. Secteur d'activité</label>
-            <div class="radio-group">
-                <input type="radio" name="secteurActivite" value="Informel" <?= (isset($_POST['secteurActivite']) && $_POST['secteurActivite'] == "Informel") ? "checked" : "" ?>> Secteur informel (commerce, artisanat...)<br>
-                <input type="radio" name="secteurActivite" value="Formel" <?= (isset($_POST['secteurActivite']) && $_POST['secteurActivite'] == "Formel") ? "checked" : "" ?>> Secteur formel (public, privé)<br>
-                <input type="radio" name="secteurActivite" value="Etudiant" <?= (isset($_POST['secteurActivite']) && $_POST['secteurActivite'] == "Etudiant") ? "checked" : "" ?>> Étudiant<br>
-                <input type="radio" name="secteurActivite" value="Autre" <?= (isset($_POST['secteurActivite']) && $_POST['secteurActivite'] == "Autre") ? "checked" : "" ?>> Autre
-            </div>
-
             <label for="PayVil">4. Pays / Ville</label>
             <input type="text" name="PayVil" id="PayVil" value="<?= htmlspecialchars($_POST['PayVil'] ?? '') ?>" placeholder="Ex: Cotonou, Bénin">
         </div>
