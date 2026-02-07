@@ -14,17 +14,12 @@
     </style>
 </head>
 <body>
-
-    <?php if(isset($error)): ?>
-        <div class="error"><?= $error ?></div>
+    <?php if(isset($_SESSION['error'])): ?>
+      <div class="error">
+        <?= $_SESSION['error'] ; unset($_SESSION['error'] ); ?>
+      </div>
     <?php endif; ?>
- <div>
-    
- </div>
- <div>
-            <?php
-var_dump($_SESSION);
-?>
+
 
 </div>
 
@@ -88,6 +83,7 @@ var_dump($_SESSION);
                 <span class="span w-[47%] text-sm p-1 rounded-lg border-blue-500/90 hidden:border-2 active:border-l-5 hover:border-l-5 hover:translate-x-1 duration-300 flex items-center gap-1">
                     <input type="radio" name="secteurActivite" class="secteurActivite appearance-none w-[10%] h-4 border-2 rounded-sm border-slate-400 checked:border-none checked:bg-blue-500/90" value="Autre" <?= (isset($_POST['secteurActivite']) && $_POST['secteurActivite'] == "Autre") ? "checked" : "" ?>><label>Autre</label>
                 </span>
+
             </div>
 
             <!-- Pays/ville -->
@@ -381,6 +377,10 @@ var_dump($_SESSION);
             <input type="submit" value="Envoyez les données">
         </div>
     </form>
+    <a href="index.php?action=SignUp">
+        Déconnecté
+    </a>
+<<<<<<< HEAD
 
 
     <!-- Initialize Swiper -->

@@ -9,5 +9,11 @@
     <section>
         Nous vous remercions pour votre Attention
     </section>
+    <a href="index.php?action=SignUp">
+        Déconnecté
+    </a>
+    <a href="index.php?action=form">
+        Enregistrer un nouveau
+    </a>
 </body>
 </html>

@@ -13,7 +13,12 @@
     </style>
 </head>
 <body>
-    <form action="" method="post" class="w-9/10 flex h-screen mx-auto items-center">
+  <?php if(isset($_SESSION['error'])): ?>
+      <div class="error">
+        <?= $_SESSION['error'] ; unset($_SESSION['error'] ); ?>
+      </div>
+    <?php endif; ?>
+    <form action="index.php?role=admin&action=login-process" method="post" class="w-9/10 flex h-screen mx-auto items-center">
         <div class = "feuille flex container h-[55%] flex-col w-full mx-auto gap-7 bg-[#EEEEEE]/50 px-4 pt-2 pb-1 justify-center">
             <h2 class="font-medium my-3 text-2xl">Authentification</h2>
             <span class=" min-h-[50px] flex items-center gap-1 text-xl hover:shadow-xl hover:-translate-y-1.5 duration-300 p-1">
