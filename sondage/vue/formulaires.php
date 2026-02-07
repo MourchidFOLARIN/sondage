@@ -380,8 +380,6 @@
     <a href="index.php?action=SignUp">
         Déconnecté
     </a>
-<<<<<<< HEAD
-
 
     <!-- Initialize Swiper -->
     <script>
