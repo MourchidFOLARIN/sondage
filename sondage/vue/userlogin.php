@@ -24,17 +24,17 @@
             <h2 class="font-medium my-3 text-2xl">Connexion</h2>
             <span class=" min-h-[50px] flex items-center gap-1 text-xl hover:shadow-xl hover:-translate-y-1.5 duration-300 p-1">
                 <i class="ri-user-2-fill"></i>
-                <input type="text" placeholder="Nom de l'enquêteur" name="nomEnqt" id="nomEqT" value="<?= isset($nameEnq)?$nameEnq:'' ?>" required class="outline-0">
+                <input type="text" placeholder="Nom de l'enquêteur" name="nomEnqt" id="nomEqT" value="<?= isset($nameEnq)?$nameEnq:'' ?>" required class="outline-0 w-full">
             </span>            
 
             <span class=" min-h-[50px] flex items-center gap-1 text-xl hover:shadow-xl hover:-translate-y-1.5 duration-300 p-1">
                 <i class="ri-id-card-line"></i>
-                <input type="text" name="nomQuest" id="nomQuested" placeholder="Nom du questionné" value="<?= isset($nomQuest)?$nomQuest:'' ?>" required  class="outline-0">
+                <input type="text" name="nomQuest" id="nomQuested" placeholder="Nom du questionné" value="<?= isset($nomQuest)?$nomQuest:'' ?>" required  class="outline-0 w-full">
             </span>
 
             <span class=" min-h-[50px] flex items-center gap-1 text-xl hover:shadow-xl hover:-translate-y-1.5 duration-300 p-1">
                 <i class="ri-id-card-line"></i>
-                <input type="text" name="prenomQuest" id="prenomQuested" placeholder="Prenom du questionné" value="<?= isset($prenomQuest)?$prenomQuest:'' ?>" required class="outline-0" id="">
+                <input type="text" name="prenomQuest" id="prenomQuested" placeholder="Prenom du questionné" value="<?= isset($prenomQuest)?$prenomQuest:'' ?>" required class="outline-0 w-full" id="">
             </span>                        
             <button type="submit" class="w-full mt-2 text-white text-center uppercase py-4 hover:bg-amber-500 duration-300 font-bold bg-blue-800 mx-auto text-sm">Se connectez</button>
         </div>
