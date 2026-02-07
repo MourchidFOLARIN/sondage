@@ -11,6 +11,5 @@
     $control = new Controller();
     $control->control();
     }
-    
 ?>
  
