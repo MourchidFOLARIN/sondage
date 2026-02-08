@@ -23,10 +23,13 @@ class Controller
                 $this->loginProcess();
                 break;
             case 'adminPage':
-                $this->adminDashboard(); // On appelle une méthode dédiée au tableau de bord
+                $this->adminDashboard(); 
                 break;
             case 'logout':
                 $this->logout();
+                break;
+            case 'search':
+                $this->search();
                 break;
             default:
                 $this->loginPage();
@@ -52,10 +55,8 @@ class Controller
         }
         $name = trim($_POST['name'] ?? '');
         $password = $_POST['password'] ?? '';
-
         if (!empty($name) && !empty($password)) {
             $result = $this->model->loginAdmin($name, $password);
-            
             if ($result) {
                 $_SESSION['idAdmin'] = $result[0]['id'];
                 header('Location: index.php?role=admin&action=adminPage');
@@ -68,12 +69,14 @@ class Controller
     }
 
     private function adminDashboard() {
-        // Protection de la route : on vérifie si l'admin est connecté
         if (!isset($_SESSION['idAdmin'])) {
             header('Location: index.php?role=admin&action=loginAdmin');
             exit;
         }
-        // Affichage de la vue sécurisée
+        $sum=$this->model->sumData();
+         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $this->search();
+        }
         include("vue/adminPage.php");
     }
 
@@ -83,4 +86,20 @@ class Controller
         header('Location: index.php?role=admin&action=loginAdmin');
         exit;
     }
+    private function search(){
+        if (!isset($_SESSION['idAdmin'])) {
+            header('Location: index.php?role=admin&action=loginAdmin');
+            exit;
+        }
+        $name=trim(htmlspecialchars(($_POST['name'])));
+        $answer=$this->model->search($name);
+        if (!empty($answer)) {
+        $_SESSION['ans'] = $answer;
+        unset($_SESSION['any']);
+        } else {
+            $_SESSION['any'] = 'Aucun resultat trouvé';
+            unset($_SESSION['ans']);
+        }
+    }
+
 }

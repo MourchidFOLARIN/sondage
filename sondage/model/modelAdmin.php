@@ -29,4 +29,44 @@ class Model
         }
       return [];
     }
+    public function sumData(){
+      $query="SELECT  COUNT(*) AS total FROM reponses_formulaire";
+      $stmt = $this->database->prepare($query);
+      $stmt -> execute();
+      $result=$stmt -> fetchAll(PDO::FETCH_ASSOC);
+      if($result){
+        return $result;
+      }
+      return []; 
+    }
+    public function search($name){
+      $query="SELECT e.nomEnqt , e.nomQuested , e.prenomQuested , r.* FROM 
+      reponses_formulaire r JOIN enqueteur e ON r.enqueteur_id = e.id WHERE e.nomEnqt LIKE :name";
+      $stmt = $this->database->prepare($query);
+      $name="%$name%";
+      $stmt -> execute(['name'=>$name]);
+      $result=$stmt -> fetchAll(PDO::FETCH_ASSOC);
+      if($result){
+        return $result;
+      }
+       return [];
+       /*
+     $query = "SELECT * FROM enqueteur WHERE nomEnqt LIKE :name";
+     $stmt = $this->database->prepare($query);
+
+     $name = "%".$name."%"; 
+     $stmt->execute(['name' => $name]); 
+
+     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    if ($result) {
+    return $result;
+    } 
+    return [];
+    */
+
+      
+    }
 }
+
+

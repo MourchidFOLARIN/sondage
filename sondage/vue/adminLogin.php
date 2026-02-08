@@ -19,13 +19,13 @@
       </div>
     <?php endif; ?>
     <form action="index.php?role=admin&action=login-process" method="post" class="w-9/10 flex h-screen mx-auto items-center">
+      <input type="hidden" name="csrf" value="<?php echo htmlspecialchars($csrf ?? ''); ?>">
         <div class = "feuille flex container h-[55%] flex-col w-full mx-auto gap-7 bg-[#EEEEEE]/50 px-4 pt-2 pb-1 justify-center">
             <h2 class="font-medium my-3 text-2xl">Authentification</h2>
             <span class=" min-h-[50px] flex items-center gap-1 text-xl hover:shadow-xl hover:-translate-y-1.5 duration-300 p-1">
                 <i class="ri-user-3-fill"></i>
-                <input type="text" name="login" placeholder="Login" class="outline-0 w-full" id="">
+                <input type="text" name="name" placeholder="Login" class="outline-0 w-full" id="">
             </span>            
-
             <span class="min-h-[50px] flex items-center gap-1 text-xl hover:shadow-xl hover:-translate-y-1.5 duration-300 p-1">
                  <i class="ri-lock-2-fill"></i>
                 <input type="text" name="password" id="" placeholder="Mot de Pass" class="outline-0 w-full">

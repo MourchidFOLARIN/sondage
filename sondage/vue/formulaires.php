@@ -26,7 +26,7 @@
 
 
 <!-- La classe span je veux l'itiliser dans le js pour que quand un radio est sélectionné qu'il reste en bordure -->
-    <form action="model.php" method="POST" class="h-9/10 flex flex-col justify-center items-center p-4">
+    <form action="" method="post" class="h-9/10 flex flex-col justify-center items-center p-4">
 
         <!--  Le formulaire 1-->
         <div class="container hidden feuille rounded-xs px-1 py-1 flex flex-col gap-2 items-center justify-center">
