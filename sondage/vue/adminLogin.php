@@ -1,37 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion | Admin</title>
+    <title>Connexion | Administration</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/sortie.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
-        .feuille{
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.18);
+        body {
+            font-family: 'Inter', sans-serif;
+            background: white;
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+        }
+
+        .input-group:focus-within {
+            border-color: #3b82f6;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 10px rgba(121, 120, 120, 0.05);
+            
         }
     </style>
 </head>
-<body>
-  <?php if(isset($_SESSION['error'])): ?>
-      <div class="error">
-        <?= $_SESSION['error'] ; unset($_SESSION['error'] ); ?>
-      </div>
-    <?php endif; ?>
-    <form action="index.php?role=admin&action=login-process" method="post" class="w-9/10 flex h-screen mx-auto items-center">
-      <input type="hidden" name="csrf" value="<?php echo htmlspecialchars($csrf ?? ''); ?>">
-        <div class = "feuille flex container h-[55%] flex-col w-full mx-auto gap-7 bg-[#EEEEEE]/50 px-4 pt-2 pb-1 justify-center">
-            <h2 class="font-medium my-3 text-2xl">Authentification</h2>
-            <span class=" min-h-[50px] flex items-center gap-1 text-xl hover:shadow-xl hover:-translate-y-1.5 duration-300 p-1">
-                <i class="ri-user-3-fill"></i>
-                <input type="text" name="name" placeholder="Login" class="outline-0 w-full" id="">
-            </span>            
-            <span class="min-h-[50px] flex items-center gap-1 text-xl hover:shadow-xl hover:-translate-y-1.5 duration-300 p-1">
-                 <i class="ri-lock-2-fill"></i>
-                <input type="text" name="password" id="" placeholder="Mot de Pass" class="outline-0 w-full">
-            </span>            
-            <button type="submit" class="w-full mt-2 text-white text-center uppercase py-4 hover:bg-amber-500 duration-300 font-bold bg-blue-800 mx-auto text-sm">Se connectez</button>
+<body class="min-h-screen flex items-center justify-center bg-slate-50 p-4">
+
+<?php if(isset($_SESSION['error'])): ?>
+<div class="fixed top-6 left-1/2 -translate-x-1/2 z-50">
+    <div class="bg-white border border-red-200 text-red-600 px-5 py-3 rounded-xl shadow-md flex items-center gap-3">
+        <i class="ri-error-warning-line text-xl"></i>
+        <span class="text-sm font-medium">
+            <?= $_SESSION['error']; unset($_SESSION['error']); ?>
+        </span>
+    </div>
+</div>
+<?php endif; ?>
+
+<div class="w-full max-w-md">
+    <form action="index.php?role=admin&action=login-process"
+          method="post"
+          class="bg-white border border-slate-200 rounded-3xl px-8 md:px-12 py-10 shadow-xl">
+
+        <input type="hidden" name="csrf" value="<?= htmlspecialchars($csrf ?? '') ?>">
+
+        <!-- Icon -->
+        <div class="w-14 h-14 bg-blue-600 rounded-2xl mx-auto mb-6 flex items-center justify-center shadow-md">
+            <i class="ri-shield-user-line text-white text-2xl"></i>
         </div>
+
+        <!-- Title -->
+        <div class="text-center mb-8">
+            <h2 class="text-2xl font-bold text-slate-800">
+                    Admin
+            </h2>
+            <p class="text-sm text-slate-500 mt-1">
+                Accès sécurisé au système
+            </p>
+        </div>
+
+        <!-- Inputs -->
+        <div class="space-y-5">
+            <div class="flex items-center gap-3 border border-slate-200 rounded-xl px-4 py-3 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100 transition">
+                <i class="ri-user-3-line text-slate-400"></i>
+                <input type="text" name="name" required
+                       placeholder="Nom d'utilisateur"
+                       class="w-full bg-transparent outline-none text-slate-700 placeholder-slate-400">
+            </div>
+
+            <div class="flex items-center gap-3 border border-slate-200 rounded-xl px-4 py-3 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100 transition">
+                <i class="ri-lock-password-line text-slate-400"></i>
+                <input type="password" name="password" required
+                       placeholder="Mot de passe"
+                       class="w-full bg-transparent outline-none text-slate-700 placeholder-slate-400">
+            </div>
+        </div>
+
+        <!-- Button -->
+        <button type="submit"
+                class="w-full mt-8 bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl font-semibold transition shadow-md hover:shadow-lg active:scale-[0.98] flex items-center justify-center gap-2">
+            Se connecter
+            <i class="ri-arrow-right-line"></i>
+        </button>
+
+        <!-- Footer -->
+        <p class="text-center mt-8 text-xs text-slate-400">
+            © Africa Retire 2026 · Espace sécurisé
+        </p>
     </form>
+</div>
+
 </body>
+
 </html>
