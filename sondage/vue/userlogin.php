@@ -1,46 +1,109 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion | Interviwer</title>
-    <link rel="stylesheet" href="../css/sortie.css">
+    <title>Accès Enquêteur</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css" rel="stylesheet">
     <style>
-        .feuille {
-            box-shadow: 0 0 8px rgba(0, 0, 0, 0.18);
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
+        
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #fdfdfd;
+            background-image: radial-gradient(#e5e7eb 0.5px, transparent 0.5px);
+            background-size: 20px 20px;
+        }
+
+        .input-focus-effect:focus-within {
+            border-color: blue;
+            background: white;
+            box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.1);
         }
     </style>
 </head>
+<body class="min-h-screen flex items-center justify-center bg-slate-50 p-4">
 
-<body>
-    <?php if (isset($_SESSION['error'])): ?>
-        <div class="error">
-            <?= $_SESSION['error'];
-            unset($_SESSION['error']); ?>
+<?php if (isset($_SESSION['error'])): ?>
+<div class="fixed top-6 right-6 max-w-sm bg-white border border-red-200 shadow-lg rounded-xl p-4 flex gap-3 animate-fade-in">
+    <i class="ri-error-warning-line text-red-500 text-xl"></i>
+    <p class="text-sm font-medium text-slate-700">
+        <?= $_SESSION['error']; unset($_SESSION['error']); ?>
+    </p>
+</div>
+<?php endif; ?>
+
+<div class="w-full max-w-lg bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden">
+
+    <!-- Header -->
+    <div class="px-10 pt-10 pb-8 text-center">
+        <div class="w-14 h-14 bg-blue-600 rounded-2xl mx-auto mb-4 flex items-center justify-center shadow-md">
+            <i class="ri-survey-line text-white text-2xl"></i>
         </div>
-    <?php endif; ?>
-    <form action="index.php?action=login" method="post" class="w-9/10 flex h-screen mx-auto items-center">
-        <input type="hidden" name="token" value="<?php echo htmlspecialchars($token ?? ''); ?>">
-        <div class=" feuille flex container h-8/12 flex-col w-full mx-auto gap-7 bg-[#EEEEEE]/50 px-4 pt-2 pb-1 justify-center">
-            <h2 class="font-medium my-3 text-2xl">Connexion</h2>
-            <span class=" min-h-[50px] flex items-center gap-1 text-xl hover:shadow-xl hover:-translate-y-1.5 duration-300 p-1">
-                <i class="ri-user-2-fill"></i>
-                <input type="text" placeholder="Nom de l'enquêteur" name="nomEnqt" id="nomEqT" value="<?= isset($nameEnq) ? $nameEnq : '' ?>" required class="outline-0 w-full">
-            </span>
+        <h1 class="text-2xl font-bold text-slate-800 tracking-tight">
+            Nouvelle enquête
+        </h1>
+        <p class="text-sm text-slate-500 mt-1">
+            Identification de l’enquêteur et du répondant
+        </p>
+    </div>
 
-            <span class=" min-h-[50px] flex items-center gap-1 text-xl hover:shadow-xl hover:-translate-y-1.5 duration-300 p-1">
-                <i class="ri-id-card-line"></i>
-                <input type="text" name="nomQuest" id="nomQuested" placeholder="Nom du questionné" value="<?= isset($nomQuest) ? $nomQuest : '' ?>" required class="outline-0 w-full">
-            </span>
+    <!-- Form -->
+    <form action="index.php?action=login" method="post" class="px-8 md:px-12 pb-10 space-y-6">
+        <input type="hidden" name="token" value="<?= htmlspecialchars($token ?? '') ?>">
 
-            <span class=" min-h-[50px] flex items-center gap-1 text-xl hover:shadow-xl hover:-translate-y-1.5 duration-300 p-1">
-                <i class="ri-id-card-line"></i>
-                <input type="text" name="prenomQuest" id="prenomQuested" placeholder="Prenom du questionné" value="<?= isset($prenomQuest) ? $prenomQuest : '' ?>" required class="outline-0 w-full" id="">
-            </span>
-            <button type="submit" class="w-full mt-2 text-white text-center uppercase py-4 hover:bg-amber-500 duration-300 font-bold bg-blue-800 mx-auto text-sm">Se connectez</button>
+        <!-- Enquêteur -->
+        <div>
+            <label class="block text-xs font-semibold text-slate-500 mb-1">
+                Enquêteur
+            </label>
+            <div class="flex items-center gap-3 border border-slate-200 rounded-xl px-4 py-3 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100 transition">
+                <i class="ri-user-line text-slate-400"></i>
+                <input type="text" name="nomEnqt" value="<?= $nameEnq ?? '' ?>" required
+                    placeholder="Nom complet"
+                    class="w-full outline-none bg-transparent text-slate-700 placeholder-slate-400">
+            </div>
+        </div>
+
+        <!-- Personne interrogée -->
+        <div>
+            <label class="block text-xs font-semibold text-slate-500 mb-1">
+                Personne interrogée
+            </label>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="flex items-center gap-3 border border-slate-200 rounded-xl px-4 py-3 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100 transition">
+                    <i class="ri-id-card-line text-slate-400"></i>
+                    <input type="text" name="nomQuest" value="<?= $nomQuest ?? '' ?>" required
+                        placeholder="Nom"
+                        class="w-full outline-none bg-transparent text-slate-700">
+                </div>
+
+                <div class="flex items-center gap-3 border border-slate-200 rounded-xl px-4 py-3 focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-100 transition">
+                    <input type="text" name="prenomQuest" value="<?= $prenomQuest ?? '' ?>" required
+                        placeholder="Prénom"
+                        class="w-full outline-none bg-transparent text-slate-700">
+                </div>
+            </div>
+        </div>
+
+        <!-- Submit -->
+        <button type="submit"
+            class="w-full bg-blue-600 hover:bg-blue-700 text-white py-4 rounded-xl font-semibold transition transform active:scale-[0.98] shadow-md hover:shadow-lg flex justify-center items-center gap-2">
+            Commencer le questionnaire
+            <i class="ri-arrow-right-line"></i>
+        </button>
+
+        <!-- Admin -->
+        <div class="text-center pt-2">
+            <a href="index.php?role=admin"
+               class="text-xs text-slate-400 hover:text-blue-600 transition font-medium">
+                Accès administration
+            </a>
         </div>
     </form>
+</div>
+
 </body>
+
 </html>
