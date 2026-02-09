@@ -49,7 +49,7 @@ class Controller
             $nomQuest = $this->verification($_POST['nomQuest'] ?? '');
             $prenomQuest = $this->verification($_POST['prenomQuest'] ?? '');
             if (!empty($nameEnq) && !empty($nomQuest) && !empty($prenomQuest)) {
-                $connet = $this->model->createLogin($nameEnq, $nomQuest, $prenomQuest);
+                $connet = $this->model->createlogin($nameEnq, $nomQuest, $prenomQuest);
                 if ($connet) {
                     $enquetInfo = $this->model->enqueteInfo($nameEnq);
                     $_SESSION['id_enqueteur'] = $enquetInfo[0]['id'];
