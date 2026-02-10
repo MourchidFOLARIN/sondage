@@ -33,7 +33,7 @@ body {
    TOTAL CARD
 ========================= */
 .total-card {
-    background: linear-gradient(135deg, #81d4fa, #29b6f6);
+    background: #3B82F6;
     color: white;
 }
 
@@ -68,13 +68,13 @@ form input {
 }
 
 form input:focus {
-    border-color: #29b6f6;
+    border-color: #3B82F6;
     box-shadow: 0 0 0 4px rgba(41,182,246,0.15);
     outline: none;
 }
 
 form button {
-    background: linear-gradient(135deg, #4fc3f7, #29b6f6);
+    background: #3B82F6;
     color: white;
     border: none;
     padding: 15px 26px;
@@ -100,7 +100,7 @@ table {
 }
 
 thead {
-    background: #29b6f6;
+    background: #3B82F6;
     color: white;
 }
 
@@ -125,7 +125,7 @@ tbody tr:nth-child(even) {
    DETAILS BUTTON
 ========================= */
 .details-btn {
-    background: #81d4fa;
+    background: #3B82F6;
     color: #01579b;
     border: none;
     padding: 8px 18px;
@@ -137,7 +137,7 @@ tbody tr:nth-child(even) {
 }
 
 .details-btn:hover {
-    background: #4fc3f7;
+    background: #3B82F6;
     transform: scale(1.1);
 }
 
@@ -167,7 +167,7 @@ tbody tr:nth-child(even) {
     box-shadow: 0 8px 18px rgba(41,182,246,0.08);
     font-size: 13px;
     line-height: 1.6;
-    border-top: 4px solid #29b6f6;
+    border-top: 4px solid #3B82F6;
 }
 
 .details-content strong {
@@ -184,7 +184,7 @@ tbody tr:nth-child(even) {
 ========================= */
 .error {
     background: #e1f5fe;
-    color: #01579b;
+    color: #3B82F6;
     padding: 16px;
     border-radius: 12px;
     font-weight: 500;
